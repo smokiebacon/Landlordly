@@ -49,6 +49,15 @@ module.exports = {
         }
        
     },
+
+    update: async (req, res) => {
+        try {
+        const updateProperty = await Property.findByIdAndUpdate(req.params.id, req.body, {new: true});
+        res.redirect('/properties');    
+        } catch (err){
+            res.send(err)
+        }
+    },
     delete: async (req, res) => {
         try {
             const deletedProperty = await Property.findByIdAndDelete(req.params.id);
