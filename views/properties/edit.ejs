@@ -1,6 +1,29 @@
 <%- include('../partials/header') %>
 
-    <h1>Edit Property Page</h1>
-    
+<h2>Edit Property</h2>
+<form class="property1" action="/properties/<%= prop._id %>?_method=PUT" method="POST">
+  <div class="form-row">
+    <div class="col-md-12 mb-3">
+      <label for="validationDefault01">Address</label>
+      <input type="text" class="form-control" id="validationDefault01" name="address" placeholder="Address" value="<%= prop.address %>"  required>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-6 mb-3">
+      <label for="validationDefault03">City</label>
+      <input type="text" class="form-control" id="validationDefault03" name="city" placeholder="City" value="<%= prop.city %>" required>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationDefault04">State</label>
+      <input type="text" class="form-control" id="validationDefault04" name="state" placeholder="State" value="<%= prop.state %>" required>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationDefault05">Zip</label>
+      <input type="text" class="form-control" id="validationDefault05" name="zip" placeholder="Zip" value="<%= prop.zip %>" required>
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit">Submit Changes</button>
+  
+</form>
 
 <%- include('../partials/footer') %>

@@ -1,19 +1,21 @@
 <%- include('../partials/header') %>
   <main>
 <h2>Show Page</h2>  
-    <% prop.forEach(property => { %>
-      <li><a href="/properties/<%=property._id%>"></a></li>
+<li><a href="/properties/<%=prop.address%>">Property #1</a></li>
+<%= prop.city %><br>
+<%= prop.state %><br>
+<%= prop.zip %><br>
 
-    <% }) %>
+<form action="/properties/<%= prop._id %>/edit" method="GET">
+        <button class="btn btn-primary" type="submit" class="btn-primary">Edit Property Info</button>
+</form>
 
-    <ul>
-     <li> Name: <%= author.name %> </li>
+<form action="/properties/<%= prop._id %>?_method=DELETE"  method="POST">
+<button class="btn btn-danger" type="submit">Delete Property</button>
+</form>
+<button class="btn btn-primary" type="submit">Create New Tenant</button>
 
-     <a href="/authors/<%= author._id %>/edit">Edit Author</a>
-    </ul>
-    <form action="/authors/<%= author._id %>/?_method=DELETE" method="POST">
-        <button type="submit">Delete Author</button>
-    </form>
-    </main>
 
+    
+</main>
 <%- include('../partials/footer') %>

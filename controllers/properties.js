@@ -20,8 +20,7 @@ module.exports = {
     create: async (req, res) => {
         try {
           const createdProperty = await Property.create(req.body);  
-          console.log(createdProperty); 
-          res.redirect('/property');
+          res.redirect('/properties');
         } catch (err) {
             res.send(err);
         }
@@ -30,9 +29,8 @@ module.exports = {
     edit: async (req, res) => {
         try {
             const editProperty = await Property.findById(req.params.id);
-            console.log(editProperty);
-            res.render('../views/properties/:id/edit', {title: 'Edit'}, {
-                property: editProperty
+            res.render('../views/properties/edit', {title: 'Edit',
+                prop: editProperty
             })
         }
             catch (err) {
@@ -43,7 +41,6 @@ module.exports = {
     show: async (req, res) => {
         try {
             const foundProperty = await Property.findById(req.params.id);
-            console.log(foundProperty);
             res.render('../views/properties/show', {title: 'Show Page', 
             prop: foundProperty 
             })
@@ -51,5 +48,14 @@ module.exports = {
             res.send(err);
         }
        
+    },
+    delete: async (req, res) => {
+        try {
+            const deletedProperty = await Property.findByIdAndDelete(req.params.id);
+            console.log(deletedProperty);
+            res.redirect('/properties');
+        } catch (err) {
+            res.send(err)
+        }
     }    
 }

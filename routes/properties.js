@@ -8,5 +8,6 @@ router.get('/new', propertyControl.new);
 router.post('/', propertyControl.create);
 router.get('/:id/edit', propertyControl.edit);
 router.get('/:id', propertyControl.show);
+router.delete('/:id', propertyControl.delete);
 
 module.exports = router;
