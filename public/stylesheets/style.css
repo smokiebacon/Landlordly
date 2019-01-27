@@ -104,3 +104,11 @@ body {
 .mastfoot {
   color: rgba(255, 255, 255, .5);
 }
+
+#inputEmail {
+  margin: 20px;
+}
+
+#inputPassword {
+  margin: 20px;
+}

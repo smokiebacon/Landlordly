@@ -5,12 +5,14 @@ const propertySchema = mongoose.Schema({
   landlord: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   tenants: [{type: mongoose.Schema.ObjectId, ref: 'User'}],
   city: String,
-  beds: Number,
-  bathrooms: Number,
-  sqft: Number,
-  maintenence: Boolean, 
-  rent: Number,
-  image: [String]
+  state: String,
+  zip: Number
+  // beds: Number,
+  // bathrooms: Number,
+  // sqft: Number,
+  // maintenence: Boolean, 
+  // rent: Number,
+  // image: [String]
 });
 
 const Property = mongoose.model('Property', propertySchema);

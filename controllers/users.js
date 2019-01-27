@@ -2,7 +2,7 @@ const User = require('../models/users');
 module.exports = {
     index: async (req, res) => {
         try {
-        const player = await User.find({});
+        const allUsers = await User.find({});
         res.render('../views/users/index', {title: 'Users'}, {
             users: allUsers
         })

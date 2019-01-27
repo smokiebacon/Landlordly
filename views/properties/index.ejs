@@ -1,7 +1,20 @@
 <%- include('../partials/header') %>
+  <h1>Properties Index Page</h1>
 
 
-<h1> Property Page </h1>
+
+<% props.forEach(property => { %>
+<li><%= property.address %> 
+    <%= property.city %> 
+    <%= property.state %> 
+    <%= property.zip %> 
+  <a href="/properties/<%= property._id %>"><%= property.address %> </a>
+
+</li>
+
+<% }) %>
+  
 
 
 <%- include('../partials/footer') %>
+    

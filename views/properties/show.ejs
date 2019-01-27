@@ -1,0 +1,19 @@
+<%- include('../partials/header') %>
+  <main>
+<h2>Show Page</h2>  
+    <% prop.forEach(property => { %>
+      <li><a href="/properties/<%=property._id%>"></a></li>
+
+    <% }) %>
+
+    <ul>
+     <li> Name: <%= author.name %> </li>
+
+     <a href="/authors/<%= author._id %>/edit">Edit Author</a>
+    </ul>
+    <form action="/authors/<%= author._id %>/?_method=DELETE" method="POST">
+        <button type="submit">Delete Author</button>
+    </form>
+    </main>
+
+<%- include('../partials/footer') %>
