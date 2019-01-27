@@ -2,10 +2,11 @@ const mongoose = require('mongoose');
 
 const propertySchema = mongoose.Schema({
   address: {type: String, required: true},
-  landlord: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+  landlord: {type: mongoose.Schema.ObjectId, ref: 'User'},
   tenants: [{type: mongoose.Schema.ObjectId, ref: 'User'}],
   city: String,
   state: String,
+  userId: String,
   zip: Number
   // beds: Number,
   // bathrooms: Number,

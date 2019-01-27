@@ -3,9 +3,7 @@ module.exports = {
     index: async (req, res) => {
         try {
         const allUsers = await User.find({});
-        res.render('../views/users/index', {title: 'Users'}, {
-            users: allUsers
-        })
+        res.render('../views/users/index', {title: 'Users', users: allUsers })
         } catch (err) {
             res.send(err);
         }

@@ -4,22 +4,35 @@ const User = require('../models/users');
 module.exports = {
     index: async (req, res) => {
         try {
-        const allProperties = await Property.find({});
-        res.render('../views/properties/index', {title: 'Properties',
-         props: allProperties })
-            
-        } catch (err) {
+         const allProperties = await Property.find({});      
+         res.render('../views/properties/index', {title: 'Properties',
+         props: allProperties
+        })
+    } catch (err) {
             res.send(err);
         }
-    },
+    },  
 
-    new: (req, res) => {
-        res.render('../views/properties/new', {title: 'Property'});
+    new: async (req, res) => {
+        try {
+        const allUsers = await User.find({});    
+        res.render('../views/properties/new', {title: 'Property',
+        users: allUsers
+        });
+        } catch (err) {
+            res.send(err)
+        }
     },
 
     create: async (req, res) => {
         try {
           const createdProperty = await Property.create(req.body);  
+          const user = await User.findById(req.body.userId);
+          console.log(createdProperty);
+          console.log(user);
+          user.properties.push(createdProperty);
+          user.save();
+          console.log(user);
           res.redirect('/properties');
         } catch (err) {
             res.send(err);
@@ -29,6 +42,7 @@ module.exports = {
     edit: async (req, res) => {
         try {
             const editProperty = await Property.findById(req.params.id);
+            console.log(editProperty);
             res.render('../views/properties/edit', {title: 'Edit',
                 prop: editProperty
             })

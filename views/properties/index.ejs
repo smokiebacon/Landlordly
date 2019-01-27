@@ -1,7 +1,7 @@
 <%- include('../partials/header') %>
   <h1>Properties Index Page</h1>
 
-
+<main>
 
 <% props.forEach(property => { %>
 <li><%= property.address %> 
@@ -9,12 +9,13 @@
     <%= property.state %> 
     <%= property.zip %> 
   <a href="/properties/<%= property._id %>"><%= property.address %> </a>
-
 </li>
 
 <% }) %>
-  
-
+<form action="/properties/new" method="GET">  
+<button class="btn btn-primary" type="submit">Create a New Property</button>
+</form>
+</main>
 
 <%- include('../partials/footer') %>
     
