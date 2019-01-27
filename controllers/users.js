@@ -3,7 +3,7 @@ module.exports = {
     index: async (req, res) => {
         try {
         const player = await User.find({});
-        res.render('../views/index', {
+        res.render('../views/users/index', {title: 'Users'}, {
             users: allUsers
         })
         } catch (err) {

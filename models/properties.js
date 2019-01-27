@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 const propertySchema = mongoose.Schema({
   address: {type: String, required: true},
-  user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-  tenants: [String],
+  landlord: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+  tenants: [{type: mongoose.Schema.ObjectId, ref: 'User'}],
   city: String,
   beds: Number,
   bathrooms: Number,
@@ -13,4 +13,5 @@ const propertySchema = mongoose.Schema({
   image: [String]
 });
 
-module.exports = mongoose.model('Property', propertySchema);
+const Property = mongoose.model('Property', propertySchema);
+module.exports = Property;
