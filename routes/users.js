@@ -5,5 +5,10 @@ const router = express.Router();
 /* GET users listing. */
 router.get('/', userControl.index);
 router.get('/new', userControl.new);
+router.post('/', userControl.create);
+// router.get('/:id/edit', userControl.edit);
+// router.get('/:id', userControl.show);
+// router.put('/:id', userControl.update);
+// router.delete('/:id', userControl.delete);
 
 module.exports = router;

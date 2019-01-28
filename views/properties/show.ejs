@@ -15,7 +15,7 @@
 <form action="/properties/<%= prop._id %>?_method=DELETE"  method="POST">
 <button class="btn btn-danger" type="submit">Delete Property</button>
 </form>
-<form action="/users/new" method="GET">
+<form action="/properties/<%= prop._id %>/add-tenant" method="GET">
 <button class="btn btn-primary" type="submit">Create New Tenant</button>
 </form>
 

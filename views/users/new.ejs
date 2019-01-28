@@ -1,7 +1,6 @@
 <%- include('../partials/header') %>
 
-<form class="form-signin" action="" method="GET">
-  <img class="mb-4" src="{{ site.baseurl }}/docs/{{ site.docs_version }}/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+<form class="form-signin" action="/properties" method="POST">
   <h1 class="h3 mb-3 font-weight-normal">New Tenant for address</h1>
   <input type="email" name="email" class="form-control" placeholder="Email" required autofocus><br>
   <p>We'll send an email to your tenant to start collecting rent!</p>
@@ -10,7 +9,7 @@
 </form>
 
   <button class="btn btn-lg btn-primary btn-block" type="submit">Create New Tenant</button>
-  <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+  <p class="mt-5 mb-3 text-muted">&copy; Landlordly 2018-2019</p>
 </form>
 
 

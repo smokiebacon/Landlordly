@@ -1,7 +1,5 @@
 const Auth = require('../models/auth');
 const bcrypt  = require('bcryptjs');
-
-
 //registration
 module.exports = {
     registration: async (req, res) => {
@@ -9,12 +7,10 @@ module.exports = {
        const password = req.body.password;
        const hashedPassword = await bcrypt.hashSync(password, bcrypt.genSaltSync(10));
        //put in database
-       
        const newUser = {}; //set to empty object, have to push into object
        newUser.email = req.body.email;
        newUser.password = hashedPassword;
        //newUser.accountType = req.body.accountType === 'landlord' ? 'landlord ' : 'tenant'; //build this into our form ( checkbox or drop down)
-
        try {
         //    const createdUser = "";
         //    if (accountType === 'landlord') {

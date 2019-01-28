@@ -7,6 +7,8 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const methodOverride = require('method-override');;
 const session = require('express-session');
+const multer = require('multer');
+
 
 const usersRouter = require('./routes/users');
 const propertyRouter = require('./routes/properties');
@@ -33,18 +35,23 @@ app.use(cookieParser());
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-
-app.use('/auth', authRouter);
-app.use('/users', usersRouter);
-app.use('/properties', propertyRouter);
-
 app.get('/', (req, res) => {
   res.render('index.ejs', {
     title: 'Home',
     message: req.session.message
   })
 });
+
+
+app.use('/auth', authRouter);
+
+app.use((req, res, next) => req.session.logged ? next() : res.redirect('/'));
+
+
+app.use('/users', usersRouter);
+app.use('/properties', propertyRouter);
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

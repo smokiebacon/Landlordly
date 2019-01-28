@@ -1,27 +1,24 @@
 const Property = require('../models/properties');
 const User = require('../models/users');
+const Auth = require('../models/auth');
 
 module.exports = {
     index: async (req, res) => {
         try {
          const allProperties = await Property.find({});      
+         const allUsers = await Auth.find({});    
          res.render('../views/properties/index', {title: 'Properties',
-         props: allProperties
+         props: allProperties,
+         users: allUsers
         })
     } catch (err) {
             res.send(err);
         }
     },  
 
-    new: async (req, res) => {
-        try {
-        const allUsers = await User.find({});    
+    new: (req, res) => {
         res.render('../views/properties/new', {title: 'Property',
-        users: allUsers
         });
-        } catch (err) {
-            res.send(err)
-        }
     },
 
     create: async (req, res) => {
@@ -80,5 +77,13 @@ module.exports = {
         } catch (err) {
             res.send(err)
         }
-    }    
+    },
+    
+    showAddTenant: (req, res) => {
+        res.render('properties/showAddProperty', {title: 'Invite', property: {_id: req.params.id}});
+    },
+
+    addTenant: (req, res) => {
+        console.log(req.body);
+    }
 }

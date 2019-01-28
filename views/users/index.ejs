@@ -1,7 +1,16 @@
 <%- include('../partials/header') %>
+  <h1>User Index Page</h1>
+
+<main>
+<h2>Logged in as TENANT</h2>
+<p>Show Renter Profile>
 
 
-<h1> Users Page </h1>
-
+<form action="/users/new" method="GET">  
+<button class="btn btn-primary" type="submit">Create a New Profile</button>
+</form>
+<li><a href="/auth/logout">Log Out</a></li>
+</main>
 
 <%- include('../partials/footer') %>
+    
