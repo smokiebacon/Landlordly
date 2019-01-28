@@ -27,12 +27,12 @@ module.exports = {
     create: async (req, res) => {
         try {
           const createdProperty = await Property.create(req.body);  
-          const user = await User.findById(req.body.userId);
-          console.log(createdProperty);
-          console.log(user);
-          user.properties.push(createdProperty);
-          user.save();
-          console.log(user);
+          //const user = await User.findById(req.body.userId);
+        //   console.log(createdProperty);
+        //   console.log(user);
+        //   user.properties.push(createdProperty);
+        //   user.save();
+        //   console.log(user);
           res.redirect('/properties');
         } catch (err) {
             res.send(err);
