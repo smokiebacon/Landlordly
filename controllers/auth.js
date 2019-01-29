@@ -34,7 +34,12 @@ module.exports = {
            req.session.logged = true;
            //req.session.AccountType = createdUser.AccountType; Will Need Landlord or Tenant
            //redirect to specific index
-           res.redirect('/properties'); 
+           if (createdUser.account === 'Landlord') {
+            res.redirect('/properties');
+        } else if (createdUser.account === 'Tenant') {
+            res.redirect('/users');
+        }
+
        } catch (err) {
            res.send(err);
        } 
@@ -50,6 +55,7 @@ module.exports = {
         }
         if (loggedUser) { //checking if user is in database
             if (bcrypt.compareSync(req.body.password, loggedUser.password)) { //check if password match
+                req.session.user = loggedUser;
                 req.session.message = '';
                 req.session.logged = true;
                 req.session.email = loggedUser.email;

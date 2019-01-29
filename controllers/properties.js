@@ -23,14 +23,13 @@ module.exports = {
 
     create: async (req, res) => {
         try {
-          const createdProperty = await Property.create(req.body);  
-          //const user = await User.findById(req.body.userId);
-        //   console.log(createdProperty);
-        //   console.log(user);
-        //   user.properties.push(createdProperty);
-        //   user.save();
-        //   console.log(user);
-          res.redirect('/properties');
+        //const createdProperty = await Property.create(req.body);  
+        const newProperty = new Property(req.body);
+        newProperty.landlord = req.session.user._id;
+        newProperty.save()
+            .then(() => {
+                res.redirect('/properties');
+        });
         } catch (err) {
             res.send(err);
         }
@@ -66,7 +65,7 @@ module.exports = {
     update: async (req, res) => {
         try {
         const updateProperty = await Property.findByIdAndUpdate(req.params.id, req.body, {new: true});
-        res.redirect('/properties');    
+        res.redirect(`/properties/${updateProperty._id}`);    
         } catch (err){
             res.send(err)
         }
@@ -86,7 +85,6 @@ module.exports = {
     },
 
     addTenant: async (req, res) => {
-        // create the user but just the email
         try {
         const createdUser = await User.create(req.body);
         const foundProperty = await Property.findById(req.params.id);
