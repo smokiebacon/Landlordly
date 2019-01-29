@@ -1,0 +1,23 @@
+<%- include('./partials/header') %>
+
+<h2>New Tenant for prop._id Address</h2>
+<form class="property1" action="/properties/<%= user._id %>?_method=PUT" method="POST">
+  <div class="form-row">
+    <div class="col-md-3 mb-3">
+      <label for="validationDefault03">First Name</label>
+      <input type="text" class="form-control" id="validationDefault03" name="firstName" placeholder="First Name" value="<%= user.firstName %>" required>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationDefault04">Last Name</label>
+      <input type="text" class="form-control" id="validationDefault04" name="lastName" placeholder="Last Name" value="<%= user.lastName %>" required>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label for="validationDefault05">Create a New Password</label>
+      <input type="text" class="form-control" id="validationDefault05" name="password" placeholder="Password" value="<%= %>" required>
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit">Submit New Tenant Info</button>
+  
+</form>
+
+<%- include('./partials/footer') %>

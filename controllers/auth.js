@@ -32,8 +32,6 @@ module.exports = {
            req.session.id = createdUser._id;
            req.session.email = createdUser.email;
            req.session.logged = true;
-           //req.session.AccountType = createdUser.AccountType; Will Need Landlord or Tenant
-           //redirect to specific index
            if (createdUser.account === 'Landlord') {
             res.redirect('/properties');
         } else if (createdUser.account === 'Tenant') {
@@ -43,6 +41,9 @@ module.exports = {
        } catch (err) {
            res.send(err);
        } 
+    },
+    getlogin: (req, res) => {
+        res.render('../views/auth/login', {title: 'Login'});
     },
 
     login: async (req, res) => {

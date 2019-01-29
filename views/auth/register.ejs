@@ -1,0 +1,58 @@
+<%- include('../partials/header') %>
+
+<div class="login-flex">
+<div class="input-border-box">
+<h3 class="signup-head">Select Artist or Venue</h3><br>
+
+<div class="select-menu">
+<select class="select-signup" name="accountType">
+  <option  value="artist">Artist</option>
+  <option  value="venue">Venue</option>
+</select><br><br>
+</div>
+
+<h2>
+<form action="/auth/registration/artist" method="POST" class="artist-form">
+    <input type="text" name="username" placeholder="Artist Name"><br><br>
+    <input type="text" name="password" required placeholder="Password"><br><br>
+    <input type="text" name="url" placeholder="Profile Pic URL"><br><br>
+    <input type="text" name="link" placeholder="Youtube Link"><br><br>
+    <textarea type="text" name="bio" rows="4" placeholder="Bio"></textarea><br><br>
+    <input type="text" name="bookingInfo" placeholder="Booking Info"><br><br>
+    <input type="text" name="genre" placeholder="Genre"><br><br>
+    <input type="text" name="city" placeholder="City"><br><br>
+    <button class="signup-btn" type="submit">submit</button>
+</form>
+
+
+<form action="/auth/registration/venue" method="POST" class="venue-form">
+    <input type="text" name="username" placeholder="Venue Name"><br><br>
+    <input type="text" name="password" required placeholder="Password"><br><br>
+    <input type="text" name="url" placeholder="Profile Pic URL"><br><br> 
+    <input type="text" name="gigInfo" placeholder="Show Info"><br><br>
+    <input type="text" name="address" placeholder="Pay Amount"><br><br>
+    <input type="text" name="pay"><br>
+    <button class="signup-btn" type="submit">Submit</button>
+</form>
+</h2>
+</div>
+</div>
+<script>
+    const select = document.querySelector('select')
+    const artistForm = document.querySelector('.artist-form')
+    const venueForm = document.querySelector('.venue-form')
+    venueForm.style.display = 'none'
+    console.log(artistForm)
+    select.addEventListener('change', evt => {
+        if(evt.target.value === 'artist') {
+            artistForm.style.display = 'block'
+            venueForm.style.display = 'none'
+        } else {
+            venueForm.style.display = 'block'
+            artistForm.style.display = 'none'
+        }
+    })
+    console.log(select)
+</script>
+
+<%- include('../partials/footer') %>
