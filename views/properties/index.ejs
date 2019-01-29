@@ -2,13 +2,13 @@
   <h1>Properties Index Page</h1>
 
 <main>
-<h2>Logged in as PERSON</h2>
+<h2>Logged in as <%= users[0].email %></h2>
 <% props.forEach(property => { %>
-<li><%= property.address %> 
-    <%= property.city %> 
+<li>
+<a href="/properties/<%= property._id %>"><%= property.address %> </a> <br>
+    <%= property.city %>, 
     <%= property.state %> 
     <%= property.zip %> 
-  <a href="/properties/<%= property._id %>"><%= property.address %> </a>
 </li>
 
 <% }) %>

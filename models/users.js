@@ -5,8 +5,7 @@ const userSchema = mongoose.Schema({
   firstName: String,
   lastName: String,
   password: String,
-  landlord: Boolean
-  //accountType: StringLandlord or Tenant from controllers/auth.js
+  account: String
 });
 
 // Send/Reponse Maintenence

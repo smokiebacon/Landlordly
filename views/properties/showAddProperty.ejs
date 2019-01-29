@@ -1,8 +1,10 @@
 <%- include('../partials/header') %>
 
 <h2>Invite a New Tenant</h2>
-<form class="property1" action="/properties/<%= property._id %>/add-tenant" method="POST">
+<form class="property" action="/properties/<%= property._id %>/add-tenant" method="POST">
   <input type="email" name="email" class="form-control" placeholder="Email" required autofocus><br>
+  <input type="text" name="firstName" class="form-control" placeholder="First Name" required> <br>
+  <input type="text" name="lastName" class="form-control" placeholder="Last Name" required> <br>
   <button class="btn btn-primary" type="submit">Send Tenant Invite</button>
 </form>
  

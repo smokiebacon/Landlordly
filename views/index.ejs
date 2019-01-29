@@ -13,8 +13,11 @@
   <%= message %>
 
   <form class="form-signin" action="/auth/register" method="POST">
-  <img class="mb-4" src="{{ site.baseurl }}/docs/{{ site.docs_version }}/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-  <h1 class="h3 mb-3 font-weight-normal">Landlord Registration</h1>
+    Account Type: <select name="account">
+                    <option value="Landlord">Landlord</option>
+                    <option value="Tenant">Tenant</option>
+                </select><br>
+  <h1 class="h3 mb-3 font-weight-normal">Registration</h1>
   <label for="inputEmail" class="sr-only">Email address</label>
   <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
   <label for="inputPassword" class="sr-only">Password</label>
@@ -28,7 +31,10 @@
 </form>
 
   <form class="form-signin" action="/auth/login" method="POST">
-  <img class="mb-4" src="{{ site.baseurl }}/docs/{{ site.docs_version }}/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+    Account Type: <select name="account">
+                    <option value="Landlord">Landlord</option>
+                    <option value="Tenant">Tenant</option>
+                </select><br>
   <h1 class="h3 mb-3 font-weight-normal">Login</h1>
   <label for="inputEmail" class="sr-only">Email address</label>
   <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>

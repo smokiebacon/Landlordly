@@ -1,4 +1,7 @@
-const Auth = require('../models/auth');
+const User = require('../models/users');
+const Property = require('../models/properties');
+
+
 const bcrypt  = require('bcryptjs');
 //registration
 module.exports = {
@@ -7,20 +10,26 @@ module.exports = {
        const password = req.body.password;
        const hashedPassword = await bcrypt.hashSync(password, bcrypt.genSaltSync(10));
        //put in database
-       const newUser = {}; //set to empty object, have to push into object
-       newUser.email = req.body.email;
+       let newUser = {};
+       newUser = req.body;
        newUser.password = hashedPassword;
        //newUser.accountType = req.body.accountType === 'landlord' ? 'landlord ' : 'tenant'; //build this into our form ( checkbox or drop down)
+       if (req.body.account === 'Landlord') {
+        newUser.account = 'Landlord';
+        } else if (req.body.account === 'Tenant') {
+        newUser.account = 'Tenant';
+        }
        try {
-        //    const createdUser = "";
-        //    if (accountType === 'landlord') {
-        //      createdUser = await Landlord.create(newUser);
-        //    } else {
-        //      createdUser = await Tenant.create(newUser);
-        //    }
-           const createdUser = await Auth.create(newUser);
+           let createdUser;
+           if (req.body.account === 'Landlord') {
+            createdUser = await User.create(newUser);
+           } else if (req.body.account === 'Tenant') {
+            createdUser = await User.create(newUser);
+           }
+           console.log(createdUser);
            //create a session
-       //  req.session.accountType = createdUser.accountType;
+           req.session.accountType = createdUser.account;
+           req.session.id = createdUser._id;
            req.session.email = createdUser.email;
            req.session.logged = true;
            //req.session.AccountType = createdUser.AccountType; Will Need Landlord or Tenant
@@ -33,16 +42,25 @@ module.exports = {
 
     login: async (req, res) => {
       try {
-        //find logged in User, //getting email from req.body (name that was attached to Form)
-        const loggedUser = await Auth.findOne({ email: req.body.email});
-        console.log(`LOGGED USER: ================ ${Auth.email}`)
+        let loggedUser;  
+        if (req.body.account === 'Landlord') {
+            loggedUser = await User.findOne({email: req.body.email});
+        } else if (req.body.account === 'Tenant') {
+            loggedUser = await User.findOne({email: req.body.email});
+        }
         if (loggedUser) { //checking if user is in database
             if (bcrypt.compareSync(req.body.password, loggedUser.password)) { //check if password match
                 req.session.message = '';
                 req.session.logged = true;
                 req.session.email = loggedUser.email;
+                if (loggedUser.account === 'Landlord') {
+                    res.redirect('/properties');
+                } else if (loggedUser.account === 'Tenant') {
+                    res.redirect('/users');
+                }
                 //if (loggedUser.accountType === landlord or tenant)
-                res.redirect('/properties'); //redirect to Tenant or Landlord Page
+                //res.redirect('/properties'); //redirect to Tenant or Landlord Page
+            
             } else {
                 req.session.message = "Email or password is incorrect";
                 res.redirect('/');
