@@ -44,22 +44,18 @@ module.exports = {
        } 
     },
     getlogin: (req, res) => {
-        res.render('../views/auth/login', {title: 'Login'});
+        res.render('../views/auth/login', {title: 'Login', message: req.session.message
+    });
     },
 
     getregister: (req, res) => {
-        res.render('../views/auth/register', {title: 'Register'});
+        res.render('../views/auth/register', {title: 'Register', message: req.session.message
+    });
     },
 
     login: async (req, res) => {
       try {
-        const loggedUser = await User.findOne({email: req.body.email});
-        console.log(loggedUser);
-        // if (req.body.account === 'Landlord') {
-        //     loggedUser = await User.findOne({email: req.body.email});
-        // } else if (req.body.account === 'Tenant') {
-        //     loggedUser = await User.findOne({email: req.body.email});
-        // }
+        const loggedUser = await User.findOne({email: req.body.email});        
         if (loggedUser) { //checking if user is in database
             if (bcrypt.compareSync(req.body.password, loggedUser.password)) { //check if password match
                 req.session.user = loggedUser;
