@@ -1,6 +1,31 @@
 <%- include('../partials/header') %>
   <main>
 <h2>Tenant Show Page</h2>  
+<%= prop %>
+
+
+
+<form>
+ <div class="form-group row">
+    <label for="inputPassword" class="col-sm-2 col-form-label">Email</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" readonly class="form-control-plaintext" value="<%= users.email %>">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputPassword" class="col-sm-2 col-form-label">First Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" readonly class="form-control-plaintext" value="<%= users.firstName %>">
+    </div>
+  </div>
+   <div class="form-group row">
+    <label for="inputPassword" class="col-sm-2 col-form-label">Last Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" readonly class="form-control-plaintext" value="<%= users.lastName %>">
+    </div>
+  </div>
+</form>
+
 
     
 </main>

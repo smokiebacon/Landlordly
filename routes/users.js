@@ -7,12 +7,10 @@ router.get('/', userControl.index);
 router.get('/new', userControl.new);
 router.get('/newmain', userControl.newmain);
 router.post('/', userControl.create);
-
-
+router.get('/:id', userControl.show);
+router.put('/:id', userControl.update);
 
 // router.get('/:id/edit', userControl.edit);
-// router.get('/:id', userControl.show);
-router.put('/:id', userControl.update);
 // router.delete('/:id', userControl.delete);
 
 //send a form with id

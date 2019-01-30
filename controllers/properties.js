@@ -2,13 +2,13 @@ const Property = require('../models/properties');
 const User = require('../models/users');
 const nodemailer = require("nodemailer");
 
-//const Auth = require('../models/auth');
-
 module.exports = {
     index: async (req, res) => {
         try {
-         const allProperties = await Property.find({});      
-         const allUsers = await User.find({});    
+        const allProperties = await Property.find({});      
+        const allUsers = await User.find({});    
+        // allProperties = allProperties.filter(property => property.landlord === req.session.userId)
+        // console.log(allProperties)
          res.render('../views/properties/index', {title: 'Properties',
          props: allProperties,
          users: allUsers
@@ -92,6 +92,9 @@ module.exports = {
         const foundProperty = await Property.findById(req.params.id);
         foundProperty.tenants.push(createdUser);
         foundProperty.save();
+        createdUser.account = 'Tenant';
+        console.log(createdUser);
+
         main(createdUser);
         res.redirect(`/properties/${foundProperty._id}`);
         } catch (err) {

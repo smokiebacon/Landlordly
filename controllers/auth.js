@@ -30,6 +30,7 @@ module.exports = {
            //create a session
            req.session.accountType = createdUser.account;
            req.session.id = createdUser._id;
+           req.session.userId = createdUser._id
            req.session.email = createdUser.email;
            req.session.logged = true;
            if (createdUser.account === 'Landlord') {
@@ -46,20 +47,26 @@ module.exports = {
         res.render('../views/auth/login', {title: 'Login'});
     },
 
+    getregister: (req, res) => {
+        res.render('../views/auth/register', {title: 'Register'});
+    },
+
     login: async (req, res) => {
       try {
-        let loggedUser;  
-        if (req.body.account === 'Landlord') {
-            loggedUser = await User.findOne({email: req.body.email});
-        } else if (req.body.account === 'Tenant') {
-            loggedUser = await User.findOne({email: req.body.email});
-        }
+        const loggedUser = await User.findOne({email: req.body.email});
+        console.log(loggedUser);
+        // if (req.body.account === 'Landlord') {
+        //     loggedUser = await User.findOne({email: req.body.email});
+        // } else if (req.body.account === 'Tenant') {
+        //     loggedUser = await User.findOne({email: req.body.email});
+        // }
         if (loggedUser) { //checking if user is in database
             if (bcrypt.compareSync(req.body.password, loggedUser.password)) { //check if password match
                 req.session.user = loggedUser;
                 req.session.message = '';
                 req.session.logged = true;
                 req.session.email = loggedUser.email;
+                req.session.userId = loggedUser._id;
                 if (loggedUser.account === 'Landlord') {
                     res.redirect('/properties');
                 } else if (loggedUser.account === 'Tenant') {

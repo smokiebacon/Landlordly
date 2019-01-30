@@ -4,8 +4,10 @@ const authControl = require('../controllers/auth');
 const User    = require('../models/users');
 const bcrypt  = require('bcryptjs');
 
+
 router.post('/register', authControl.registration);
 router.get('/login', authControl.getlogin);
+router.get('/register', authControl.getregister);
 router.post('/login', authControl.login);
 router.get('/logout', authControl.logout);
 

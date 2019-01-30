@@ -44,11 +44,15 @@ module.exports = {
     },
     show: async (req, res) => {
         try {
-            const foundProperty = await Property.find({'tenants': req.params.id});
-
+            //const foundProperty = await Property.find({'tenants': req.params.id});
             const foundTenant = await User.findById(req.params.id);
+            const foundProperty = await Property.findById(req.params.id).populate('tenants');
+            //const foundProperty = await Property.findById(req.params.id).populate('tenants');
+
+            console.log('FOUND TENANT:==============', foundTenant);
+            console.log('FOUND PROPERTY:==============', foundProperty);
             // const foundProperty = await Property.findById(req.params.id).populate('tenants');
-            res.render('../views/users/show', {title: 'Show Page', 
+            res.render('../views/users/show', {title: 'Tenant Profile', 
             prop: foundProperty,
             users: foundTenant
             })
