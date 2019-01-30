@@ -12,5 +12,6 @@ router.put('/:id', propertyControl.update);
 router.delete('/:id', propertyControl.delete);
 router.get('/:id/add-tenant', propertyControl.showAddTenant);
 router.post('/:id/add-tenant', propertyControl.addTenant);
+router.delete('/:id', propertyControl.deleteTenant);
 
 module.exports = router;

@@ -5,12 +5,9 @@ const nodemailer = require("nodemailer");
 module.exports = {
     index: async (req, res) => {
         try {
-        let allProperties = await Property.find({});      
-        const allUsers = await User.find({});    
-        //allProperties = allProperties.filter(property => property.landlord === req.session.userId);
+        let allProperties = await Property.find({});   
         res.render('../views/properties/index', {title: 'Properties',
-        props: allProperties,
-        users: allUsers
+        props: allProperties
         })
     } catch (err) {
             res.send(err);
@@ -63,7 +60,6 @@ module.exports = {
         }
        
     },
-
     update: async (req, res) => {
         try {
         const updateProperty = await Property.findByIdAndUpdate(req.params.id, req.body, {new: true});
@@ -81,6 +77,17 @@ module.exports = {
             res.send(err)
         }
     },
+
+    deleteTenant: async ( req, res ) => {
+        try {
+            const deleteTenant = await Property.findOne({'tenants': req.params.id})
+            console.log(deleteTenant);
+            //Property.tenants.remove(tenant.id)
+            // await Property.save();
+        } catch (err) {
+            res.send(err);
+        }
+    },
     
     showAddTenant: (req, res) => {
         res.render('properties/showAddProperty', {title: 'Invite', property: {_id: req.params.id}});
@@ -91,8 +98,11 @@ module.exports = {
         const createdUser = await User.create(req.body);
         const foundProperty = await Property.findById(req.params.id);
         foundProperty.tenants.push(createdUser);
-        foundProperty.save();
         createdUser.account = 'Tenant';
+        console.log(createdUser);
+        createdUser.save();    
+        foundProperty.save();
+        
         console.log(createdUser);
 
         main(createdUser);

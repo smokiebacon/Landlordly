@@ -76,3 +76,20 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+/*
+
+[x] each landlord/tenant should only be able to see his own things
+[x] Tenant should be able to sign in if Landlord Invited Tenant
+[x] populate landlord / property info in Tenant Show page
+[x] In Tenant
+[ ] able to delete one or more tenants from a property
+[ ] Page, show Property and tenant profile
+[ ] Set Up Fake Payments
+[ ] Maintenence info: tenant can send a maintence request via form, with Date and Time submitted 
+[ ] landlord notified and sees maintence request. can check off if done with checkbox
+[ ] payments 
+
+Styling:
+[ ] Style Property cards in a nice grid
+[ ]
+*/

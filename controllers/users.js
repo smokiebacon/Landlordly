@@ -6,7 +6,8 @@ module.exports = {
     index: async (req, res) => {
         try {
         const allUsers = await User.find({});
-        res.render('../views/users/index', {title: 'Users', users: allUsers })
+        const allProperty = await Property.find();
+        res.render('../views/users/index', {title: 'Users', users: allUsers, prop: allProperty })
         } catch (err) {
             res.send(err);
         }
@@ -19,15 +20,17 @@ module.exports = {
         res.render('../views/users/newmain', {title: 'Maintenence'});
     },
 
-    create: async (req, res) => {
-        try {
-         //create Payments or Maintence Requests.
+    // create: async (req, res) => {
+    //     try {
+    //      //create Payments or Maintence Requests.
 
 
-        } catch (err) {
-          res.send(err);
-        }
-    },
+    //     } catch (err) {
+    //       res.send(err);
+    //     }
+    // },
+
+    create: () => console.log('create'),
 
     update: async (req, res) => {
         try {
@@ -46,8 +49,8 @@ module.exports = {
         try {
             //const foundProperty = await Property.find({'tenants': req.params.id});
             const foundTenant = await User.findById(req.params.id);
-            const foundProperty = await Property.findById(req.params.id).populate('tenants');
-            //const foundProperty = await Property.findById(req.params.id).populate('tenants');
+            const foundProperty = await Property.findOne({'tenants': req.params.id})
+            // const foundProperty = await Property.findById(req.params.id).populate('tenants');
 
             console.log('FOUND TENANT:==============', foundTenant);
             console.log('FOUND PROPERTY:==============', foundProperty);

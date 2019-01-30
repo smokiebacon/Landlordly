@@ -3,11 +3,18 @@
 
 <main>
 <h2>Logged in as TENANT</h2>
-<p>Show Renter Profile>
+<p>Show Renter Profile</p>
+
+PROPERTY
+<%= prop %>
+
+<br><br><br>
+USERS
+<%= users %>
 
 
-<form action="/users/new" method="GET">  
-<button class="btn btn-primary" type="submit">Create a New Profile</button>
+<form action="/users/<%= users._id %>" method="GET">  
+<button class="btn btn-primary" type="submit">Go to Profile</button>
 </form><br>
 <form action="/users/newmain" method="GET">  
 <button class="btn btn-primary" type="submit">Create a New Maintence Request</button>

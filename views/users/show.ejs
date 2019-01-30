@@ -1,8 +1,14 @@
 <%- include('../partials/header') %>
   <main>
 <h2>Tenant Show Page</h2>  
-<%= prop %>
 
+  <p>Address: <%= prop.address %></p>
+  <p>City: <%= prop.city %></p>
+  <p>State: <%= prop.state %></p>
+  <p>Zip: <%= prop.zip %></p>
+
+
+<li><a href="/auth/logout">Log Out</a></li>
 
 
 <form>

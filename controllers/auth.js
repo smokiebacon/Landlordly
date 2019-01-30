@@ -6,14 +6,12 @@ const bcrypt  = require('bcryptjs');
 //registration
 module.exports = {
     registration: async (req, res) => {
-       //const email = req.body.email;
        const password = req.body.password;
        const hashedPassword = await bcrypt.hashSync(password, bcrypt.genSaltSync(10));
-       //put in database
        let newUser = {};
        newUser = req.body;
        newUser.password = hashedPassword;
-       //newUser.accountType = req.body.accountType === 'landlord' ? 'landlord ' : 'tenant'; //build this into our form ( checkbox or drop down)
+       console.log(req.body.account)
        if (req.body.account === 'Landlord') {
         newUser.account = 'Landlord';
         } else if (req.body.account === 'Tenant') {
@@ -26,8 +24,6 @@ module.exports = {
            } else if (req.body.account === 'Tenant') {
             createdUser = await User.create(newUser);
            }
-           console.log(createdUser);
-           //create a session
            req.session.accountType = createdUser.account;
            req.session.id = createdUser._id;
            req.session.userId = createdUser._id
@@ -55,7 +51,8 @@ module.exports = {
 
     login: async (req, res) => {
       try {
-        const loggedUser = await User.findOne({email: req.body.email});        
+        const loggedUser = await User.findOne({email: req.body.email});   
+        console.log(loggedUser);     
         if (loggedUser) { //checking if user is in database
             if (bcrypt.compareSync(req.body.password, loggedUser.password)) { //check if password match
                 req.session.user = loggedUser;
@@ -66,11 +63,8 @@ module.exports = {
                 if (loggedUser.account === 'Landlord') {
                     res.redirect('/properties');
                 } else if (loggedUser.account === 'Tenant') {
-                    res.redirect('/users');
+                    res.redirect(`/users/${loggedUser._id}`);
                 }
-                //if (loggedUser.accountType === landlord or tenant)
-                //res.redirect('/properties'); //redirect to Tenant or Landlord Page
-            
             } else {
                 req.session.message = "Email or password is incorrect";
                 res.redirect('/');
@@ -81,14 +75,11 @@ module.exports = {
             req.session.message = 'Email does not exist';
             res.redirect('/');
         }
-            //if they match, redirect to page
-            //if password dont match, keep them on login page with msg: wrong credentials
       } catch (err) {
           console.log('HITTING THE ERROR', err);
           res.send(err);
       } 
     },
-//logout to //authentication/logout
     logout: async(req, res) => {
         req.session.destroy((err) => {
             err ? res.send(err) : res.redirect('/');

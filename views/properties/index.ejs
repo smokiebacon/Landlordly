@@ -1,22 +1,23 @@
 <%- include('../partials/header') %>
-  <h1>Properties Index Page</h1>
-
+  <h1>My Properties</h1>
 <main>
-<h2>Logged in as </h2>
+
 <% props.forEach(property => { %>
-<li>
-<a href="/properties/<%= property._id %>"><%= property.address %> </a> <br>
+<div class="propertyCards">
+<a href="/properties/<%= property._id %>"><%= property.address %> &nbsp&nbsp</a>
     <%= property.city %>, 
     <%= property.state %> 
     <%= property.zip %> 
-</li>
 
+</div>
 <% }) %>
 <form action="/properties/new" method="GET">  
 <button class="btn btn-primary" type="submit">Create a New Property</button>
 </form>
 <li><a href="/auth/logout">Log Out</a></li>
 </main>
+
+
 
 <%- include('../partials/footer') %>
     
