@@ -5,13 +5,12 @@ const nodemailer = require("nodemailer");
 module.exports = {
     index: async (req, res) => {
         try {
-        const allProperties = await Property.find({});      
+        let allProperties = await Property.find({});      
         const allUsers = await User.find({});    
-        // allProperties = allProperties.filter(property => property.landlord === req.session.userId)
-        // console.log(allProperties)
-         res.render('../views/properties/index', {title: 'Properties',
-         props: allProperties,
-         users: allUsers
+        //allProperties = allProperties.filter(property => property.landlord === req.session.userId);
+        res.render('../views/properties/index', {title: 'Properties',
+        props: allProperties,
+        users: allUsers
         })
     } catch (err) {
             res.send(err);
@@ -26,7 +25,8 @@ module.exports = {
     create: async (req, res) => {
     try {
         //const createdProperty = await Property.create(req.body);  
-        const newProperty = new Property(req.body);
+        const newProperty = await new Property(req.body);
+        console.log(newProperty);
         newProperty.landlord = req.session.user._id;
         newProperty.save()
             .then(() => {

@@ -29,6 +29,11 @@ body {
   height: 100%;
   background-color: #333;
 }
+.btn-success {
+  display: center;
+  justify-content: center;
+  align-content: center;
+}
 
 body {
   display: -ms-flexbox;
@@ -40,6 +45,10 @@ body {
 
 .cover-container {
   max-width: 42em;
+}
+
+.card-body {
+  background-color: rgb(62, 59, 59);
 }
 
 
@@ -84,6 +93,14 @@ body {
     float: right;
   }
 }
+
+#propbuttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 10px;
+}
+
 
 
 /*

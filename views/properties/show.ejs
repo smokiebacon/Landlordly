@@ -1,27 +1,52 @@
 <%- include('../partials/header') %>
   <main>
-<h2>Show Page</h2>  
-<li>
-<%= prop.address %> <br>
-<%= prop.city %><br>
-<%= prop.state %><br>
-<%= prop.zip %><br>
-</li>
-
-
-<%= prop.tenants %>
-
+<h2>My Properties</h2>  
+<form>
+ <div class="form-group row">
+    <label for="inputPassword" class="col-sm-2 col-form-label">Address</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" readonly class="form-control-plaintext" value="<%= prop.address %>">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputPassword" class="col-sm-2 col-form-label">City</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" readonly class="form-control-plaintext" value="<%= prop.city %>">
+    </div>
+  </div>
+   <div class="form-group row">
+    <label for="inputPassword" class="col-sm-2 col-form-label">State</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" readonly class="form-control-plaintext" value="<%= prop.state %>">
+    </div>
+  </div>
+   <div class="form-group row">
+    <label for="inputPassword" class="col-sm-2 col-form-label">Current Tenants</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" readonly class="form-control-plaintext" 
+      value="<% prop.tenants.forEach(tenants => { %>
+      <%= tenants.firstName %> <%= tenants.lastName %>
+<% }) %>"> <br>
+      <form action="" method="POST">
+        <button class="btn btn-warning">Delete Tenants</button>
+      </form>  
+     
+    </div>
+  </div>
+</form>
+<div id="propbuttons">
 <form action="/properties/<%= prop._id %>/edit" method="GET">
-        <button class="btn btn-primary" type="submit" class="btn-primary">Edit Property Info</button>
+  <button class="btn btn-primary" type="submit" class="btn-primary">Edit Property Info</button>
 </form>
 
 <form action="/properties/<%= prop._id %>?_method=DELETE"  method="POST">
-<button class="btn btn-danger" type="submit">Delete Property</button>
-</form>
-<form action="/properties/<%= prop._id %>/add-tenant" method="GET">
-<button class="btn btn-primary" type="submit">Create New Tenant</button>
+  <button class="btn btn-danger" type="submit">Delete Property</button>
 </form>
 
-    
+<form action="/properties/<%= prop._id %>/add-tenant" method="GET">
+  <button class="btn btn-primary" type="submit">Create New Tenant</button>
+</form>
+</div>   
+
 </main>
 <%- include('../partials/footer') %>
