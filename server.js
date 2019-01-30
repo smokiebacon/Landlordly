@@ -52,13 +52,11 @@ app.use('/signin-tenant/:userId', async (req, res) => {
 
 app.use('/auth', authRouter);
 
-app.use((req, res, next) => req.session.logged ? next() : res.redirect('/'));
+//app.use((req, res, next) => req.session.logged ? next() : res.redirect('/'));
 
 
 app.use('/users', usersRouter);
 app.use('/properties', propertyRouter);
-
-
 
 
 // catch 404 and forward to error handler

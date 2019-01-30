@@ -108,26 +108,18 @@ module.exports = {
                 pass: 'BI5LWRZHEGxFFrDOEzwNf4uoYYV0A1DYt55FumX2fNSN' // generated ethereal password
               }
             });
-          
             // setup email data with unicode symbols
             let mailOptions = {
-              from: '"Landlordly Abe" <smokiebacon@gmail.com>', // sender address
+              from: '"Landlordly" <smokiebacon@gmail.com>', // sender address
               to: "smokiebacon@gmail.com", // list of receivers
               subject: "Landlordly: Invite to Register as Tenant", // Subject line
-              text: `Welcome to Landlordly! Abe has invited you to become a tenant at <this address> Sign up for a free account at http://localhost:3000/users/${createdUser._id}`, // plain text body
+              text: `Welcome to Landlordly! Abe has invited you to become a tenant at <this address> Sign up for a free account at http://localhost:3000/signin-tenant/${createdUser._id}`, // plain text body
             };
-          
             // send mail with defined transport object
             let info = await transporter.sendMail(mailOptions);
-          
             console.log("Message sent: %s", info.messageId);          
             // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
             // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
           }
-          
-    //}        // push the users _id into the property user array
-        // send out the invite to email
-        // the link would look like this e.g. users/<user id>/new
-        //console.log(req.body);
     }
 }
