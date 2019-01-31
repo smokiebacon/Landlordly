@@ -1,20 +1,22 @@
 <%- include('../partials/header') %>
-  <h1>My Properties</h1>
+  <h1>My Properties</h1> <a href="/auth/logout">Log Out</a>
 <main>
 
 <% props.forEach(property => { %>
 <div class="propertyCards">
 <a href="/properties/<%= property._id %>"><%= property.address %> &nbsp&nbsp</a>
+    <img class="img" src="<%= property.image %>">
+    <%= property.address %>
     <%= property.city %>, 
     <%= property.state %> 
     <%= property.zip %> 
-
 </div>
 <% }) %>
 <form action="/properties/new" method="GET">  
 <button class="btn btn-primary" type="submit">Create a New Property</button>
 </form>
-<li><a href="/auth/logout">Log Out</a></li>
+
+
 </main>
 
 

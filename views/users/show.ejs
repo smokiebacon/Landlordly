@@ -1,13 +1,14 @@
 <%- include('../partials/header') %>
   <main>
 <h2>Tenant Show Page</h2>  
+<ul><a href="/auth/logout">Log Out</a></ul>
 
+<div id="tenantaddress">
   <p>Address: <%= prop.address %></p>
   <p>City: <%= prop.city %></p>
   <p>State: <%= prop.state %></p>
   <p>Zip: <%= prop.zip %></p>
-
-<li><a href="/auth/logout">Log Out</a></li>
+</div>
 
 <form>
  <div class="form-group row">
@@ -30,12 +31,12 @@
   </div>
 </form>
 
+<form action="/users/newmain/<%= prop._id %>" method="GET">  
+<button class="btn btn-primary" type="submit">Maintenence Request</button>
+</form><br>
+
 <form action="/users/newpay" method="GET">  
 <button class="btn btn-primary" type="submit">Pay Rent</button>
-</form><br>
-    
-<form action="/users/newmain" method="GET">  
-<button class="btn btn-primary" type="submit">Create a New Maintence Request</button>
 </form><br>
 
 

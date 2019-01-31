@@ -8,7 +8,8 @@ const propertySchema = mongoose.Schema({
   state: String,
   userId: String,
   zip: Number,
-  maintenenceForm: String
+  maintenenceForm: String,
+  image: {type: String, default: "https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Ficons.iconarchive.com%2Ficons%2Fpaomedia%2Fsmall-n-flat%2F1024%2Fhouse-icon.png&f=1"}
   // beds: Number,
   // bathrooms: Number,
   // sqft: Number,

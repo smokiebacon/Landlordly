@@ -1,6 +1,7 @@
 <%- include('../partials/header') %>
   <main>
 <h2>Property</h2>  
+
 <form>
  <div class="form-group row">
     <label for="inputPassword" class="col-sm-2 col-form-label">Address</label>
@@ -20,24 +21,15 @@
       <input type="text" class="form-control" readonly class="form-control-plaintext" value="<%= prop.state %>">
     </div>
   </div>
-   <div class="form-group row">
-    <label for="inputPassword" class="col-sm-2 col-form-label">Current Tenants</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" readonly class="form-control-plaintext" 
-      value="<% prop.tenants.forEach(tenants => { %>
-      <%= tenants.firstName %> <%= tenants.lastName %>
-<% }) %>"> <br>
-
-    </div>
-  </div>
 </form>
-
+<div class="tenants">
 <% prop.tenants.forEach(tenants => { %>
-      <li><%= tenants.firstName %> <%= tenants.lastName %>
+      <ul><%= tenants.firstName %> <%= tenants.lastName %>
   <form action="/users/<%= tenants._id %>/deleteTenant?_method=DELETE"  method="POST">
-  <button class="btn btn-danger" type="submit">Delete Tenant</button>
-</form></li>
+  <button class="btn btn-warning" type="submit">Delete Tenant</button>
+</form></ul>
 <% }) %>
+</div>
 
 <div id="propbuttons">
 <form action="/properties/<%= prop._id %>/edit" method="GET">
@@ -45,7 +37,7 @@
 </form>
 
 <form action="/properties/<%= prop._id %>?_method=DELETE"  method="POST">
-  <button class="btn btn-danger" type="submit">Delete Property</button>
+  <button id="delProp" class="btn btn-danger" type="submit">Delete Property</button>
 </form>
 
 <form action="/properties/<%= prop._id %>/add-tenant" method="GET">
@@ -53,4 +45,5 @@
 </form>
 </div>   
 </main>
+
 <%- include('../partials/footer') %>

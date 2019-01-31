@@ -8,13 +8,46 @@ const logger = require('morgan');
 const methodOverride = require('method-override');;
 const session = require('express-session');
 const paypal = require('paypal-rest-sdk');
+const multer = require('multer');
 
 const User = require('./models/users')
 const usersRouter = require('./routes/users');
 const propertyRouter = require('./routes/properties');
 const authRouter = require('./routes/auth');
 
+// Set Storage Engine
+const storage = multer.diskStorage( {
+  destination: '../public/uploads/',
+  filename: function (req, file, cb) {
+      cb(null, file.fieldname + '-' + Date.now() + 
+      path.extname(file.originalname));
+  }
+});
 
+//init upload
+const upload = multer( {
+  storage : storage,
+  limits: {fileSize: 10000000},       //set file size in bytes limit
+  fileFilter: function (req, file, cb) {
+      checkFileType(file, cb);
+  }
+}).single('myImage');
+
+//check File Type
+function checkFileType(file, cb) {
+  //allowed extensions
+  const fileTypes = /jpeg|jpg|png|gif/;
+  //check extention
+  const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
+  //check mime
+  const mimetype = fileTypes.test(file.mimetype);
+
+  if (mimetype && extname) {
+      return cb(null, true);
+  } else {
+      cb('Error: Only images are allowed.');
+  }
+}
 const app = express();
 
 
@@ -85,14 +118,17 @@ module.exports = app;
 [x] populate landlord / property info in Tenant Show page
 [x] In Tenant
 [x] able to delete one or more tenants from a property
-// submit, attach to property. go to landlord show, display all the landlord
+// submit, make a route, save it in database, attach to property. go to landlord show, display all the landlord
  properties, access the maintence form.
 
 [x] Page, show Property and tenant profile
+[ ] Maintenence info request
+[ ] dashboard for Landlord and Tenant
+[ ] Able to Upload Photo of house, landlord, and tenant profile picture
+[ ] GOOGLE API for house location
+[ ] make amendeties prettified (nice icons for backyard, # of garage, beds, bedrooms, bathrooms, etc, pet allowed?)
 [ ] Set Up Fake Payments
 [ ] Maintenence info: tenant can send a maintence request via form, with Date and Time submitted 
 [ ] landlord notified and sees maintence request. can check off if done with checkbox
 
-Styling:
-[ ]
 */

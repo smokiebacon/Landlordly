@@ -110,6 +110,13 @@ body {
   letter-spacing: 10px;
 }
 
+.tenants {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
 
 
 /*
@@ -123,18 +130,25 @@ body {
   font-weight: 700;
 }
 
+#tenantaddress {
+  text-align: center;
+}
+
+.img {
+  position: relative;
+  float: left;
+  width:  100px;
+  height: 100px;
+  background-position: 50% 50%;
+  background-repeat:   no-repeat;
+  background-size:     cover;
+}
+
+
 
 /*
  * Footer
  */
 .mastfoot {
   color: rgba(255, 255, 255, .5);
-}
-
-#inputEmail {
-  margin: 20px;
-}
-
-#inputPassword {
-  margin: 20px;
 }

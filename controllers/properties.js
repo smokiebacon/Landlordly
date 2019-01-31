@@ -3,6 +3,20 @@ const User = require('../models/users');
 const nodemailer = require("nodemailer");
 
 module.exports = {
+
+    maintreq: async (req, res) => {
+        try {
+            const foundProperty = await Property.findById(req.params.id);
+            foundProperty.maintenenceForm = req.body.problem;
+            await foundProperty.save();
+            console.log(foundProperty)
+        
+        } catch (err) {
+            res.send(err);
+        }
+        
+    },
+
     index: async (req, res) => {
         try {
         let allProperties = await Property.find({});   
@@ -134,5 +148,5 @@ module.exports = {
             // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
             // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
           }
-    }
+        },
 }

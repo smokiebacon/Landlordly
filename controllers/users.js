@@ -17,60 +17,14 @@ module.exports = {
         res.render('../views/users/new', {title: 'Person'});
     },
 
-    newmain: async (req, res) => {
-        res.render('../views/users/newmain', {title: 'Maintenence'});
-    },
-
-    newpay: async (req, res) => {
+    newpay: (req, res) => {
         res.render('../views/users/newpay', {title: 'Pay Rent'});
     },
 
-    pay: (req, res) => {
-
-        paypal.configure({
-            'mode': 'sandbox',
-            'client_id': 'AQaiSK898Ex-9rTMnwWnTvKKxzyuy3IMP1U_wrQXhKIrwD8zu8k23haddTq8Kww40BuwTq3XG2PCLUUN',
-            'client_id_secret': 'EENQW7Bex0ALwuLHozbEMTxFvk2HZciNX66QLfE1jxm67k0VwutW_vv3pH4cZm0epZYiSKS07gYbtAJS'
-          });
-          
-        const create_payment_json = {
-            "intent": "sale",
-            "payer": {
-                "payment_method": "paypal"
-            },
-            "redirect_urls": {
-                "return_url": "http://localhost:3000/success",
-                "cancel_url": "http://localhost:3000/cancel"
-            },
-            "transactions": [{
-                "item_list": {
-                    "items": [{
-                        "name": "Rent",
-                        "sku": "001",
-                        "price": "100",
-                        "currency": "USD",
-                        "quantity": 1
-                    }]
-                },
-                "amount": {
-                    "currency": "USD",
-                    "total": "100"
-                },
-                "description": "Monthly rent."
-            }]
-        };
-    
-        
-        paypal.payment.create(create_payment_json, function (error, payment) {
-            if (error) {
-                res.send(error);
-            } else {
-                console.log("Create Payment Response");
-                console.log(payment);
-
-            }
-        });
+    newmain: (req, res) => {
+        res.render('../views/users/newmain', {title: 'Maintenence', propId: req.params.propId});//
     },
+
 
     create: () => console.log('create'),
 
