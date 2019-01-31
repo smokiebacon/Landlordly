@@ -1,5 +1,5 @@
+require('dotenv').config();
 require('./db/db');
-
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -14,40 +14,6 @@ const User = require('./models/users')
 const usersRouter = require('./routes/users');
 const propertyRouter = require('./routes/properties');
 const authRouter = require('./routes/auth');
-
-// Set Storage Engine
-const storage = multer.diskStorage( {
-  destination: '../public/uploads/',
-  filename: function (req, file, cb) {
-      cb(null, file.fieldname + '-' + Date.now() + 
-      path.extname(file.originalname));
-  }
-});
-
-//init upload
-const upload = multer( {
-  storage : storage,
-  limits: {fileSize: 10000000},       //set file size in bytes limit
-  fileFilter: function (req, file, cb) {
-      checkFileType(file, cb);
-  }
-}).single('myImage');
-
-//check File Type
-function checkFileType(file, cb) {
-  //allowed extensions
-  const fileTypes = /jpeg|jpg|png|gif/;
-  //check extention
-  const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
-  //check mime
-  const mimetype = fileTypes.test(file.mimetype);
-
-  if (mimetype && extname) {
-      return cb(null, true);
-  } else {
-      cb('Error: Only images are allowed.');
-  }
-}
 const app = express();
 
 
@@ -76,6 +42,7 @@ app.get('/', (req, res) => {
     message: req.session.message
   })
 });
+
 
 app.use('/signin-tenant/:userId', async (req, res) => {
   const user = await User.findById(req.params.userId)
@@ -127,8 +94,8 @@ module.exports = app;
 [ ] Able to Upload Photo of house, landlord, and tenant profile picture
 [ ] GOOGLE API for house location
 [ ] make amendeties prettified (nice icons for backyard, # of garage, beds, bedrooms, bathrooms, etc, pet allowed?)
-[ ] Set Up Fake Payments
-[ ] Maintenence info: tenant can send a maintence request via form, with Date and Time submitted 
+[x] Set Up Fake Payments
+[x] Maintenence info: tenant can send a maintence request via form 
 [ ] landlord notified and sees maintence request. can check off if done with checkbox
 
 */

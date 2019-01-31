@@ -1,4 +1,6 @@
 <%- include('../partials/header') %>
+<%- include('../partials/landlord') %>
+
   <h1>My Properties</h1> <a href="/auth/logout">Log Out</a>
 <main>
 
@@ -10,6 +12,7 @@
     <%= property.city %>, 
     <%= property.state %> 
     <%= property.zip %> 
+    <%= property.maintenenceForm %> 
 </div>
 <% }) %>
 <form action="/properties/new" method="GET">  

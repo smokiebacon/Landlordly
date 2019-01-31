@@ -10,11 +10,18 @@ module.exports = {
             foundProperty.maintenenceForm = req.body.problem;
             await foundProperty.save();
             console.log(foundProperty)
-        
+            res.redirect(`/users/newmain/${req.params.id}`);
         } catch (err) {
             res.send(err);
         }
         
+    },
+
+    showmaint: async (req, res) => {
+        const foundProperty = await Property.find({});
+        res.render('../views/properties/maintenance', {title: 'maintenance', 
+        prop: foundProperty
+    });
     },
 
     index: async (req, res) => {

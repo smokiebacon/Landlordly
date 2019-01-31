@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
-const connectionString = 'mongodb://localhost/Landlordly';
+//const connectionString = 'mongodb://localhost/Landlordly';
+const connectionString = process.env.DATABASE_URL;
 
 mongoose.connect(connectionString, {
   useNewUrlParser: true,
