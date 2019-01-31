@@ -7,9 +7,7 @@
   <p>State: <%= prop.state %></p>
   <p>Zip: <%= prop.zip %></p>
 
-
 <li><a href="/auth/logout">Log Out</a></li>
-
 
 <form>
  <div class="form-group row">
@@ -36,7 +34,9 @@
 <button class="btn btn-primary" type="submit">Create a New Maintence Request</button>
 </form><br>
 
-
+<form action="/users/newpayment" method="GET">  
+<button class="btn btn-primary" type="submit">Pay Rent</button>
+</form><br>
     
 </main>
 <%- include('../partials/footer') %>

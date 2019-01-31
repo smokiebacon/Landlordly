@@ -28,8 +28,6 @@
       <%= tenants.firstName %> <%= tenants.lastName %>
 <% }) %>"> <br>
 
-
-      
     </div>
   </div>
 </form>
@@ -54,12 +52,5 @@
   <button class="btn btn-primary" type="submit">Create New Tenant</button>
 </form>
 </div>   
-
-
-
-
-<form action="/users/<%= prop._id %>/delete?_method=DELETE" method="POST">
-        <button class="btn btn-warning">Delete Tenants</button>
-      </form>
 </main>
 <%- include('../partials/footer') %>

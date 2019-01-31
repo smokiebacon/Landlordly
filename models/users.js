@@ -6,7 +6,8 @@ const userSchema = mongoose.Schema({
   lastName: String,
   password: String,
   account: String,
-  rentamount: Number
+  maintenenceForm: String,
+  
 });
 
 // Send/Reponse Maintenence
