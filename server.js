@@ -7,6 +7,8 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const methodOverride = require('method-override');;
 const session = require('express-session');
+const paypal = require('paypal-rest-sdk');
+
 const User = require('./models/users')
 const usersRouter = require('./routes/users');
 const propertyRouter = require('./routes/properties');
