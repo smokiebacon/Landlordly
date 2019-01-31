@@ -7,8 +7,6 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const methodOverride = require('method-override');;
 const session = require('express-session');
-
-
 const User = require('./models/users')
 const usersRouter = require('./routes/users');
 const propertyRouter = require('./routes/properties');
@@ -16,7 +14,6 @@ const authRouter = require('./routes/auth');
 
 
 const app = express();
-
 
 
 

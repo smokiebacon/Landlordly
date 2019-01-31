@@ -1,6 +1,7 @@
 const User = require('../models/users');
 const Property = require('../models/properties');
 const bcrypt  = require('bcryptjs');
+const paypal = require('paypal-rest-sdk');
 
 module.exports = {
     index: async (req, res) => {
@@ -20,15 +21,49 @@ module.exports = {
         res.render('../views/users/newmain', {title: 'Maintenence'});
     },
 
-    // create: async (req, res) => {
-    //     try {
-    //      //create Payments or Maintence Requests.
+    newpay: async (req, res) => {
+        res.render('../views/users/newpay', {title: 'Pay Rent'});
+    },
 
+    pay: (req, res) => {
+        const create_payment_json = {
+            "intent": "sale",
+            "payer": {
+                "payment_method": "paypal"
+            },
+            "redirect_urls": {
+                "return_url": "http://localhost:3000/success",
+                "cancel_url": "http://localhost:3000/cancel"
+            },
+            "transactions": [{
+                "item_list": {
+                    "items": [{
+                        "name": "Rent",
+                        "sku": "001",
+                        "price": "100",
+                        "currency": "USD",
+                        "quantity": 1
+                    }]
+                },
+                "amount": {
+                    "currency": "USD",
+                    "total": "100"
+                },
+                "description": "Monthly rent."
+            }]
+        };
+        
+        
+        paypal.payment.create(create_payment_json, function (error, payment) {
+            if (error) {
+                res.send(error);
+            } else {
+                console.log("Create Payment Response");
+                console.log(payment);
 
-    //     } catch (err) {
-    //       res.send(err);
-    //     }
-    // },
+            }
+        });
+    },
 
     create: () => console.log('create'),
 
@@ -93,6 +128,7 @@ module.exports = {
         }
 
     },
+  
 
 
 }
