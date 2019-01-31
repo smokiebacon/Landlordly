@@ -7,7 +7,8 @@ const propertySchema = mongoose.Schema({
   city: String,
   state: String,
   userId: String,
-  zip: Number
+  zip: Number,
+  maintenenceForm: String
   // beds: Number,
   // bathrooms: Number,
   // sqft: Number,

@@ -27,13 +27,20 @@
       value="<% prop.tenants.forEach(tenants => { %>
       <%= tenants.firstName %> <%= tenants.lastName %>
 <% }) %>"> <br>
-      <form action="" method="POST">
-        <button class="btn btn-warning">Delete Tenants</button>
-      </form>  
-     
+
+
+      
     </div>
   </div>
 </form>
+
+<% prop.tenants.forEach(tenants => { %>
+      <li><%= tenants.firstName %> <%= tenants.lastName %>
+  <form action="/users/<%= tenants._id %>/deleteTenant?_method=DELETE"  method="POST">
+  <button class="btn btn-danger" type="submit">Delete Tenant</button>
+</form></li>
+<% }) %>
+
 <div id="propbuttons">
 <form action="/properties/<%= prop._id %>/edit" method="GET">
   <button class="btn btn-primary" type="submit" class="btn-primary">Edit Property Info</button>
@@ -48,5 +55,11 @@
 </form>
 </div>   
 
+
+
+
+<form action="/users/<%= prop._id %>/delete?_method=DELETE" method="POST">
+        <button class="btn btn-warning">Delete Tenants</button>
+      </form>
 </main>
 <%- include('../partials/footer') %>

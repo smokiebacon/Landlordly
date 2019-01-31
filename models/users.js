@@ -5,7 +5,8 @@ const userSchema = mongoose.Schema({
   firstName: String,
   lastName: String,
   password: String,
-  account: String
+  account: String,
+  rentamount: Number
 });
 
 // Send/Reponse Maintenence

@@ -62,7 +62,37 @@ module.exports = {
         } catch (err) {
             res.send(err);
         }
-    }
+    },
+    delete: async (req, res) => {
+        try {
+            const deletedProperty = await Property.findById(req.params.id);
+            deletedProperty.tenants = [];
+            deletedProperty.save();
+            res.redirect(`/properties/${req.params.id}`);
+
+            console.log(deletedProperty);
+            // .remove({}, (err, deletedTenant) => {
+            //     console.log(deletedProperty);
+            //     res.redirect(`/properties/${req.params.id}`);
+            // });
+           
+  
+        } catch (err) {
+            res.send(err)
+        }
+
+    },
+    deletedTenant: async (req, res) => {
+        try {
+            const deletedTenant = await User.findByIdAndDelete(req.params.id);
+            console.log(deletedTenant);
+            // deletedTenant.save();
+            res.redirect('back');
+        } catch (err) {
+            res.send(err)
+        }
+
+    },
 
 
 }
