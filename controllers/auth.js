@@ -30,7 +30,7 @@ module.exports = {
            req.session.email = createdUser.email;
            req.session.logged = true;
            if (createdUser.account === 'Landlord') {
-            res.redirect('/properties');
+            res.redirect(`/properties`);
         } else if (createdUser.account === 'Tenant') {
             res.redirect('/users');
         }
@@ -61,7 +61,7 @@ module.exports = {
                 req.session.email = loggedUser.email;
                 req.session.userId = loggedUser._id;
                 if (loggedUser.account === 'Landlord') {
-                    res.redirect('/properties');
+                    res.redirect('/properties')
                 } else if (loggedUser.account === 'Tenant') {
                     res.redirect(`/users/${loggedUser._id}`);
                 }

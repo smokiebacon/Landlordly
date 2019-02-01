@@ -52,7 +52,7 @@ module.exports = {
             console.log('FOUND PROPERTY:==============', foundProperty);
             // const foundProperty = await Property.findById(req.params.id).populate('tenants');
             res.render('../views/users/show', {title: 'Tenant Profile', 
-            prop: foundProperty,
+            prop: foundProperty || {},
             users: foundTenant
             })
         } catch (err) {

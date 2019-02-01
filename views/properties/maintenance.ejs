@@ -1,5 +1,12 @@
 <%- include('../partials/header') %>
 
-<h2>maintenance</h2>
-<%= prop.city  %>
+<h2>Maintenance</h2>
+
+<% prop.forEach ( p => { %>
+   <%= p.maintenenceForm %>
+<% }) %>
+
+<form action="" method="">
+  <button class="btn btn-primary" type="submit">Mark as Completed</button>
+</form>
 <%- include('../partials/footer') %>
