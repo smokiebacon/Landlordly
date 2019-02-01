@@ -26,7 +26,8 @@ module.exports = {
 
     index: async (req, res) => {
         try {
-        let allProperties = await Property.find({});   
+        let allProperties = await Property.find({'landlord' : req.session.userId});
+        console.log(allProperties)  
         res.render('../views/properties/index', {title: 'Properties',
         props: allProperties
         })
@@ -42,10 +43,11 @@ module.exports = {
 
     create: async (req, res) => {
     try {
-        //const createdProperty = await Property.create(req.body);  
+        // const createdProperty = await Property.create(req.body);  
         const newProperty = await new Property(req.body);
+        
         console.log(newProperty);
-        newProperty.landlord = req.session.user._id;
+        newProperty.landlord = req.session.userId;
         newProperty.save()
             .then(() => {
                 res.redirect('/properties');
