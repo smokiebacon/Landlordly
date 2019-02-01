@@ -28,15 +28,11 @@ Once an tenant accepts the invite from the landlord, the tenant is now associate
 # Wireframe
 
 Home Page
-(https://github.com/smokiebacon/Landlordly/blob/master/public/images/wireframe/Screen%20Shot%202019-01-26%20at%208.43.22%20AM.png)
+![Image of Pic](https://i.imgur.com/ZaHYJXD.png)
+![Imgur](https://i.imgur.com/i0SncmA.png)
+![Imgur](https://i.imgur.com/JzVYs9s.png)
+![Imgur](https://i.imgur.com/vkyQBVa.png)
 
-(https://github.com/smokiebacon/Landlordly/blob/master/public/images/wireframe/Screen%20Shot%202019-01-26%20at%208.43.41%20AM.png)
-
-(https://github.com/smokiebacon/Landlordly/blob/master/public/images/wireframe/Screen%20Shot%202019-01-26%20at%208.44.01%20AM.png)
-
-(https://github.com/smokiebacon/Landlordly/blob/master/public/images/wireframe/Screen%20Shot%202019-01-26%20at%208.44.23%20AM.png)
-
-Favorite Code:
 
 
 
@@ -50,7 +46,9 @@ Linking and comprehending 2 models was difficult.
 -No Pictures; add some neat pictures.
 -Perhaps connect to a Real Estate API to populate property images, info (# of beds, bathrooms, sqft, etc)
 -Make nav bars for landlord/tenant
-0Hide registration/login form if logged in
+-Hide registration/login form if logged in
+-Maintence form doesn't quite work well. Add ability to edit work order on Tenant Page. In Landlord Page, ability to check off a work order as in progress or completed.
+-Payments: link up Bank accounts for both Landlord and Tenants.
 
 
 
