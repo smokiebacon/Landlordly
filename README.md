@@ -4,7 +4,7 @@ A web app that connects Landlord with confirmed tenants. Landlords are able to c
 Once an tenant accepts the invite from the landlord, the tenant is now associated with the landlord's property. The tenant can send rent payments and maintenance requests. 
 
 
-
+[Check out Landlordly here](https://serene-chamber-98569.herokuapp.com/)
 
 
 

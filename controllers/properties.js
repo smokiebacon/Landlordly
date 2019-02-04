@@ -122,7 +122,7 @@ module.exports = {
         const foundProperty = await Property.findById(req.params.id);
         foundProperty.tenants.push(createdUser);
         createdUser.account = 'Tenant';
-        console.log(createdUser);
+        console.log(createdUser.email);
         createdUser.save();    
         foundProperty.save();
         
@@ -147,7 +147,7 @@ module.exports = {
             // setup email data with unicode symbols
             let mailOptions = {
               from: '"Landlordly" <smokiebacon@gmail.com>', // sender address
-              to: "smokiebacon@gmail.com", // list of receivers
+              to: createdUser.email, // list of receivers
               subject: "Landlordly: Invite to Register as Tenant", // Subject line
               text: `Welcome to Landlordly! Abe has invited you to become a tenant at <this address> Sign up for a free account at https://serene-chamber-98569.herokuapp.com/signin-tenant/${createdUser._id}`, // plain text body
             };
